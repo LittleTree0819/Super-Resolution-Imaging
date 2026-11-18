@@ -1,0 +1,57 @@
+{
+  "protocol_version": 1,
+  "purpose": "Diagnostic acceptance gates, not permission to generate or train",
+  "production_release_authorized": false,
+  "production_configuration_frozen": false,
+  "diagnostic_sample": "0276_03",
+  "source_model_sha256": "6e24d7040d91ded19fc901231be4fdaf051613f85cda9cb49b576a1411c93d29",
+  "sampling": [128, 256, 512],
+  "image_simulation": {
+    "lens_layout": "unchanged frozen quarter-four positions",
+    "psf_field_grid": [9, 9],
+    "source_crop": [768, 768],
+    "lr_detector": [128, 128],
+    "hr_detector": [256, 256],
+    "reference": "Vertex",
+    "comparison": "B0/B1 and center A, plus aberration-free GT"
+  },
+  "direct_psf": {
+    "pupil_sampling": [128, 256, 512],
+    "fixed_image_sampling": 128,
+    "fixed_image_delta_um": 1.2,
+    "normalize_peak_to_one": false,
+    "green_wavelength_um": 0.535,
+    "support_check": "Image grid 128 versus 256 at fixed 1.2 micrometers",
+    "warning": "Strehl-referenced values are not absolute irradiance"
+  },
+  "engineering_acceptance_tolerances": {
+    "image_mae_256_to_512_max": 0.00392156862745098,
+    "psf_shape_total_variation_256_to_512_max": 0.01,
+    "psf_integral_relative_change_256_to_512_max": 0.01,
+    "psf_support_relative_integral_change_max": 0.01,
+    "linear_float_additivity_max_absolute_error": 1e-12,
+    "note": "Engineering tolerances; no trained-model validation/test metrics are used"
+  },
+  "linear_operator_control": {
+    "output_dtype": "float64 authoritative NPZ",
+    "fixed_gain": 1.0,
+    "per_image_normalization": false,
+    "per_position_auto_exposure": false,
+    "preview_only_clipping": true,
+    "psf_unit_flux_assumption": "constant throughput control, not measured radiometry",
+    "limitations": [
+      "Field-invariant center PSF",
+      "Cached geometric mapping uses 0.5876 micrometers",
+      "Relative illumination and wavelength-dependent geometry are not yet implemented",
+      "Unconverged kernels must not enter production"
+    ]
+  },
+  "if_any_gate_fails": "Do not freeze production settings or replace dataset images. Record failed gates and required follow-up.",
+  "replacement_scope_if_forward_model_changes": {
+    "preserve": ["source crop bytes", "sample IDs", "source-group splits", "four lens positions", "detector dimensions", "existing exclusions"],
+    "recompute": ["A center frame once per scene and repeat channels", "B four frames", "GT through the revised ideal geometry/photometry"],
+    "old_A_checkpoint": "Not compatible by default; require new A training or a separately validated transfer experiment",
+    "no_mixed_versions": true,
+    "training_started": false
+  }
+}

@@ -1,0 +1,82 @@
+# Python environments, build outputs, and caches
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+wheels/
+.pytest_cache/
+.uv-cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+
+# Local data and experiment outputs (root paths preserve the Python data package)
+/data/
+/runs/
+/outputs/
+/work/
+/checkpoints/
+/results/
+/.chart-data-*/
+
+# Thesis, talks, and local progress reports
+/paper/
+/reports/
+/scripts/build_meeting_report_*.py
+*.pdf
+*.ppt
+*.pptx
+*.pptm
+*.pps
+*.ppsx
+*.doc
+*.docx
+*.docm
+*_Defense_Script.md
+
+# Research notes retained locally. Publish the two maintained setup guides.
+/docs/*
+!/docs/dataset_design.md
+!/docs/zemax_model.md
+
+# Local OpticStudio models, system paths, and frozen run manifests
+*.zmx
+*.ZMX
+*.zos
+*.ZOS
+*.zar
+*.ZAR
+*.zda
+*.ZDA
+/configs/*.local.*
+/configs/zemax_b.toml
+/configs/zemax_*_pilot*.toml
+/configs/zemax_9frame_geometric.toml
+/configs/zemax_quarter_four_frozen.toml
+/configs/quarter_four_release_plan.json
+/configs/quarter_four_training_frozen.json
+/configs/quarter_four_legacy_continuation.json
+
+# Model checkpoints, archives, and logs
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.log
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*

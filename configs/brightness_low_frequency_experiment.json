@@ -1,0 +1,33 @@
+{
+  "status": "design_only_not_launched",
+  "initial_checkpoint": "runs/train_b_expanded_split_residual_ssim_w020_stage2/best.pt",
+  "initial_checkpoint_sha256": "9518fc9dbce240ace2e8cae570c796fce76aa79beace685d18fce740ea6cf104",
+  "dataset": "runs/div2k_train_v1",
+  "train_samples": 2586,
+  "validation_samples": 72,
+  "use_test_for_selection": false,
+  "inference_brightness_reference": "learned_network_output_no_external_correction",
+  "split_sigma_hr_pixels": 4.0,
+  "local_loss_centering": "subtract_each_gaussian_filtered_image_mean",
+  "unchanged_ssim_weight": 0.2,
+  "unchanged_component_weight": 0.2,
+  "epochs": 20,
+  "batch_size": 8,
+  "patch_size": null,
+  "learning_rate": 0.000025,
+  "weight_decay": 0.00001,
+  "optimizer": "AdamW_reset_for_each_group",
+  "scheduler": null,
+  "early_stopping": false,
+  "primary_comparison": "fixed_epoch_20_against_C0",
+  "include_epoch_zero_as_best_candidate": true,
+  "first_seed": 5400,
+  "conditional_repeat_seeds": [5401, 5402],
+  "groups": [
+    {"name": "C0", "global_weight": 0.0, "local_weight": 0.0},
+    {"name": "C1", "global_weight": 1.0, "local_weight": 0.0},
+    {"name": "C2", "global_weight": 0.0, "local_weight": 1.0},
+    {"name": "C3", "global_weight": 1.0, "local_weight": 1.0}
+  ],
+  "note": "Experiment specification, not yet an executable training CLI configuration."
+}

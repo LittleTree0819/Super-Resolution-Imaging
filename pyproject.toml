@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "super-resolution-imaging"
+version = "0.3.0"
+description = "Zemax ZOS-API dataset generator for single-lens burst super-resolution"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "Pillow>=10", "pythonnet>=3.0.5", "tomli>=2; python_version < '3.11'"]
+
+[project.optional-dependencies]
+train = ["torch>=2.4"]
+
+[project.scripts]
+sr-zemax = "super_resolution_imaging.cli:main"
+sr-train = "super_resolution_imaging.training.cli:main"
+sr-baselines = "super_resolution_imaging.training.baselines:main"
+sr-evaluate = "super_resolution_imaging.training.evaluation:main"
+sr-ablation = "super_resolution_imaging.training.ablation:main"
+sr-compare-models = "super_resolution_imaging.training.compare_models:main"
+sr-analyze-residual = "super_resolution_imaging.training.residual_analysis:main"
+sr-analyze-model-behavior = "super_resolution_imaging.training.model_behavior:main"
+sr-compare-residuals = "super_resolution_imaging.training.compare_residual_variants:main"
+sr-frame-combinations = "super_resolution_imaging.training.frame_combinations:main"
+sr-compare-losses = "super_resolution_imaging.training.compare_loss_variants:main"
+sr-evaluate-ssim-sweep = "super_resolution_imaging.training.evaluate_ssim_sweep:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

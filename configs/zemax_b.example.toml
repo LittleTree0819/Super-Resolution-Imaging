@@ -1,0 +1,36 @@
+# Copy to a local config and set the four Zemax fields before running.
+[zemax]
+install_dir = "C:/path/to/Zemax OpticStudio"
+source_model = "data/lens.zmx"
+source_sha256 = "replace-with-source-model-sha256"
+images_dir = "C:/path/to/Zemax/IMAFiles"
+
+[model]
+front_surface = 1
+rear_surface = 2
+image_gap_mm = 56.25
+before_comment = "SR_DATASET_LENS_SHIFT_BEGIN"
+after_comment = "SR_DATASET_LENS_SHIFT_END"
+
+[simulation]
+field_number = 1
+field_height_mm = 5.70
+lr_pixels = 128
+lr_pixel_size_mm = 0.0024
+hr_pixels = 256
+hr_pixel_size_mm = 0.0012
+pupil_sampling = 128
+image_sampling = 128
+psf_x_points = 9
+psf_y_points = 9
+reference = "Vertex"
+aberrations = "Diffraction"
+
+[dataset]
+frames = 4
+crop_size = 768
+positions_mm = [[0.0, 0.0], [0.001089, 0.0], [0.0, 0.001031], [0.001089, 0.001031]]
+split_train = 80
+split_validation = 10
+split_test = 10
+seed = 5400
